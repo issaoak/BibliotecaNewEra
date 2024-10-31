@@ -10,8 +10,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{ route('principaal') }}">Biblioteca </a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" href="{{ route('regstro') }}">Registro de Libros</a></li>
+        </ul>
+    </nav>
     <div class="container mt-4">
         @yield('content')
     </div>
+    <footer>
+        <p>&copy; Biclioteca, {{date('Y') }}</p>
+    </footer>
 </body>
 </html>
