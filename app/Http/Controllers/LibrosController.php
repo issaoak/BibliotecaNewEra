@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ValidadorLibros;
 
 class LibrosController extends Controller
 {
@@ -15,21 +16,11 @@ class LibrosController extends Controller
     {
         return view('registro');
     }
-    public function store(Request $request)
+    public function store(ValidadorLibros $request)
     {
-        $request->validate([
-            'isbn' => 'required|numeric|digits:13',
-            'titulo' => 'required|string|max:150',
-            'autor' => 'required|string|max:100',
-            'paginas' => 'required|integer|min:1',
-            'año' => 'required|integer|min:1000|max:' . date('Y'),
-            'editorial' => 'required|string|max:100',
-            'email' => 'required|email'
-        ]);
-
-        return redirect()->route('registro')->with('success', 'Todo correcto: Libro "' . $request->titulo . '" guardado');
+        $tituloLibro = $request->input('titulo');
+        session()->flash('success', 'Todo correcto: Libro "' . $tituloLibro . '" guardado');
+        return redirect()->route('registro');
     }
-
-    
 }
 
